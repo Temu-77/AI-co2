@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './index.css';
 import { ImageUpload } from './components/ImageUpload';
 import { ImageMetadataDisplay } from './components/ImageMetadataDisplay';

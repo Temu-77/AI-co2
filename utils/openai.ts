@@ -68,10 +68,8 @@ function createTimeoutPromise(ms: number): Promise<never> {
  * Falls back to formula-based calculation if API fails
  */
 export async function estimateCO2Emissions(metadata: ImageMetadata): Promise<CO2Data> {
-  // Handle both Vite environment and Node.js test environment
-  const apiKey = typeof import.meta.env !== 'undefined' 
-    ? import.meta.env.VITE_OPENAI_API_KEY 
-    : process.env.VITE_OPENAI_API_KEY;
+  // Get API key from Vite environment
+  const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
   
   // If no API key, use fallback immediately
   if (!apiKey) {
@@ -81,9 +79,7 @@ export async function estimateCO2Emissions(metadata: ImageMetadata): Promise<CO2
   
   try {
     // Get model from environment or use default
-    const model = typeof import.meta.env !== 'undefined' 
-      ? (import.meta.env.VITE_OPENAI_MODEL || 'gpt-3.5-turbo')
-      : (process.env.VITE_OPENAI_MODEL || 'gpt-3.5-turbo');
+    const model = import.meta.env.VITE_OPENAI_MODEL || 'gpt-3.5-turbo';
 
     // Prepare the API request (without response_format for compatibility)
     const request: Partial<OpenAIRequest> = {

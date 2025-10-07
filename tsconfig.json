@@ -23,6 +23,7 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true
   },
-  "include": ["src"],
+  "include": ["src", "App.tsx", "components/**/*.tsx", "utils/**/*.ts", "vite-env.d.ts", "types.ts"],
+  "exclude": ["vite.config.ts", "tailwind.config.js", "postcss.config.js", "**/*.test.tsx", "**/*.test.ts", "**/*.simple-test.tsx", "**/*.simple-test.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
