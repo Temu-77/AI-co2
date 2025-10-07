@@ -1,0 +1,156 @@
+import React from 'react';
+import { ImageMetadataDisplayProps } from '../types';
+
+export const ImageMetadataDisplay: React.FC<ImageMetadataDisplayProps> = ({
+  metadata,
+  imagePreview,
+}) => {
+  return (
+    <div className="w-full animate-fade-in">
+      <div className="bg-gray-900/90 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl relative overflow-hidden">
+        {/* Gradient border effect */}
+        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20 rounded-2xl opacity-50 blur-xl"></div>
+        
+        <div className="relative z-10">
+          {/* Header */}
+          <div className="flex items-center gap-3 mb-6">
+            <span className="text-4xl">📢</span>
+            <h2 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+              Ad Banner Details
+            </h2>
+          </div>
+
+          {/* Content Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+            {/* Image Preview Section */}
+            <div className="flex flex-col items-center justify-center bg-black/30 rounded-xl p-3 sm:p-4 border border-white/5">
+              <div className="w-full max-w-xs aspect-video bg-gray-800/50 rounded-lg overflow-hidden flex items-center justify-center mb-3">
+                {imagePreview ? (
+                  <img
+                    src={imagePreview}
+                    alt={metadata.fileName}
+                    className="w-full h-full object-contain"
+                  />
+                ) : (
+                  <span className="text-4xl sm:text-6xl">📸</span>
+                )}
+              </div>
+              <p className="text-xs sm:text-sm text-gray-400 text-center truncate w-full px-2">
+                {metadata.fileName}
+              </p>
+            </div>
+
+            {/* Metadata Info Section */}
+            <div className="flex flex-col justify-center space-y-3 sm:space-y-4">
+              {/* Resolution */}
+              <div className="bg-black/20 rounded-lg p-3 sm:p-4 border border-white/5 hover:border-cyan-500/30 transition-all duration-300">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="text-lg sm:text-xl">📐</span>
+                  <span className="text-xs sm:text-sm text-gray-400 uppercase tracking-wide">Resolution</span>
+                </div>
+                <p className="text-lg sm:text-xl md:text-2xl font-bold text-white ml-6 sm:ml-7">
+                  {metadata.resolution}
+                </p>
+                <p className="text-xs text-gray-500 ml-6 sm:ml-7">
+                  {metadata.width} × {metadata.height} pixels
+                </p>
+              </div>
+
+              {/* File Size */}
+              <div className="bg-black/20 rounded-lg p-3 sm:p-4 border border-white/5 hover:border-blue-500/30 transition-all duration-300">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="text-lg sm:text-xl">💾</span>
+                  <span className="text-xs sm:text-sm text-gray-400 uppercase tracking-wide">File Size</span>
+                </div>
+                <p className="text-lg sm:text-xl md:text-2xl font-bold text-white ml-6 sm:ml-7">
+                  {metadata.fileSizeFormatted}
+                </p>
+                <p className="text-xs text-gray-500 ml-6 sm:ml-7">
+                  {metadata.fileSize.toLocaleString()} bytes
+                </p>
+              </div>
+
+              {/* Format */}
+              <div className="bg-black/20 rounded-lg p-3 sm:p-4 border border-white/5 hover:border-purple-500/30 transition-all duration-300">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="text-lg sm:text-xl">🎨</span>
+                  <span className="text-xs sm:text-sm text-gray-400 uppercase tracking-wide">Format</span>
+                </div>
+                <p className="text-lg sm:text-xl md:text-2xl font-bold text-white ml-6 sm:ml-7">
+                  {metadata.format}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* AI Model Details Section */}
+          <div className="mt-6 pt-6 border-t border-white/10">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="text-3xl">🤖</span>
+              <h3 className="text-xl md:text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
+                AI Model Details
+              </h3>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+              {/* AI Model */}
+              <div className="bg-black/20 rounded-lg p-3 sm:p-4 border border-white/5 hover:border-purple-500/30 transition-all duration-300">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-base sm:text-lg">🎯</span>
+                  <span className="text-xs sm:text-sm text-gray-400 uppercase tracking-wide">AI Model</span>
+                </div>
+                <p className="text-sm sm:text-base font-bold text-white ml-5 sm:ml-6">
+                  MugenAI Ads 2
+                </p>
+              </div>
+
+              {/* Image Generation */}
+              <div className="bg-black/20 rounded-lg p-3 sm:p-4 border border-white/5 hover:border-emerald-500/30 transition-all duration-300">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-base sm:text-lg">🖼️</span>
+                  <span className="text-xs sm:text-sm text-gray-400 uppercase tracking-wide">Image Gen</span>
+                </div>
+                <p className="text-sm sm:text-base font-bold text-white ml-5 sm:ml-6">
+                  GPT-o3
+                </p>
+              </div>
+
+              {/* Prompt Generation */}
+              <div className="bg-black/20 rounded-lg p-3 sm:p-4 border border-white/5 hover:border-cyan-500/30 transition-all duration-300">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-base sm:text-lg">💬</span>
+                  <span className="text-xs sm:text-sm text-gray-400 uppercase tracking-wide">Prompt Gen</span>
+                </div>
+                <p className="text-sm sm:text-base font-bold text-white ml-5 sm:ml-6">
+                  Gemini 2.0 Flash-Exp
+                </p>
+              </div>
+
+              {/* System */}
+              <div className="bg-black/20 rounded-lg p-3 sm:p-4 border border-white/5 hover:border-blue-500/30 transition-all duration-300">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-base sm:text-lg">⚙️</span>
+                  <span className="text-xs sm:text-sm text-gray-400 uppercase tracking-wide">System</span>
+                </div>
+                <p className="text-sm sm:text-base font-bold text-white ml-5 sm:ml-6">
+                  4GB 1CPU Linux
+                </p>
+              </div>
+
+              {/* Location */}
+              <div className="bg-black/20 rounded-lg p-3 sm:p-4 border border-white/5 hover:border-pink-500/30 transition-all duration-300 sm:col-span-2 lg:col-span-2">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-base sm:text-lg">🌏</span>
+                  <span className="text-xs sm:text-sm text-gray-400 uppercase tracking-wide">Server Location</span>
+                </div>
+                <p className="text-sm sm:text-base font-bold text-white ml-5 sm:ml-6">
+                  Asia-Northeast (Tokyo)
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
