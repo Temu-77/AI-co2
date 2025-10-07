@@ -6,7 +6,8 @@ export const ImageMetadataDisplay: React.FC<ImageMetadataDisplayProps> = ({
   metadata,
   imagePreview,
 }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isAIDetailsExpanded, setIsAIDetailsExpanded] = useState(false);
+  
   return (
     <div className="w-full animate-fade-in">
       <div className="bg-gray-900/90 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl relative overflow-hidden">
@@ -14,39 +15,15 @@ export const ImageMetadataDisplay: React.FC<ImageMetadataDisplayProps> = ({
         <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20 rounded-2xl opacity-50 blur-xl"></div>
         
         <div className="relative z-10">
-          {/* Header with Toggle Button */}
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-3">
-              <span className="text-4xl">📢</span>
-              <h2 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                Ad Banner Details
-              </h2>
-            </div>
-            
-            {/* Toggle Button */}
-            <button
-              onClick={() => setIsExpanded(!isExpanded)}
-              className="flex items-center gap-2 px-4 py-2 bg-gray-800/50 hover:bg-gray-700/50 border border-white/10 hover:border-white/20 rounded-lg transition-all duration-200 text-gray-300 hover:text-white"
-              aria-expanded={isExpanded}
-              aria-label={isExpanded ? "Hide details" : "Show details"}
-            >
-              <span className="text-sm font-medium">
-                {isExpanded ? 'Hide' : 'Show'}
-              </span>
-              {isExpanded ? (
-                <ChevronUp className="w-4 h-4" />
-              ) : (
-                <ChevronDown className="w-4 h-4" />
-              )}
-            </button>
+          {/* Ad Banner Details Header (Always Visible) */}
+          <div className="flex items-center gap-3 mb-6">
+            <h2 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+              Ad Banner Details
+            </h2>
           </div>
 
-          {/* Collapsible Content */}
-          <div className={`transition-all duration-300 ease-in-out overflow-hidden ${
-            isExpanded ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'
-          }`}>
-            {/* Content Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+          {/* Ad Banner Content Grid (Always Visible) */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-8">
             {/* Image Preview Section */}
             <div className="flex flex-col items-center justify-center bg-black/30 rounded-xl p-3 sm:p-4 border border-white/5">
               <div className="w-full max-w-xs aspect-video bg-gray-800/50 rounded-lg overflow-hidden flex items-center justify-center mb-3">
@@ -105,14 +82,35 @@ export const ImageMetadataDisplay: React.FC<ImageMetadataDisplayProps> = ({
             </div>
           </div>
 
-          {/* AI Model Details Section */}
+          {/* AI Model Details Section (Collapsible) */}
           <div className="mt-6 pt-6 border-t border-white/10">
-            <div className="flex items-center gap-3 mb-4">
-              <span className="text-3xl">🤖</span>
+            <div className="flex items-center justify-between mb-4">
               <h3 className="text-xl md:text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
                 AI Model Details
               </h3>
+              
+              {/* Toggle Button for AI Details */}
+              <button
+                onClick={() => setIsAIDetailsExpanded(!isAIDetailsExpanded)}
+                className="flex items-center gap-2 px-4 py-2 bg-gray-800/50 hover:bg-gray-700/50 border border-white/10 hover:border-white/20 rounded-lg transition-all duration-200 text-gray-300 hover:text-white"
+                aria-expanded={isAIDetailsExpanded}
+                aria-label={isAIDetailsExpanded ? "Hide AI model details" : "Show AI model details"}
+              >
+                <span className="text-sm font-medium">
+                  {isAIDetailsExpanded ? 'Hide' : 'Show'}
+                </span>
+                {isAIDetailsExpanded ? (
+                  <ChevronUp className="w-4 h-4" />
+                ) : (
+                  <ChevronDown className="w-4 h-4" />
+                )}
+              </button>
             </div>
+
+            {/* Collapsible AI Model Details Content */}
+            <div className={`transition-all duration-300 ease-in-out overflow-hidden ${
+              isAIDetailsExpanded ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'
+            }`}>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
               {/* AI Model */}
@@ -165,7 +163,7 @@ export const ImageMetadataDisplay: React.FC<ImageMetadataDisplayProps> = ({
                 </p>
               </div>
             </div>
-          </div>
+            </div>
           </div>
         </div>
       </div>
