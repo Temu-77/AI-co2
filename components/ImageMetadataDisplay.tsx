@@ -45,13 +45,12 @@ export const ImageMetadataDisplay: React.FC<ImageMetadataDisplayProps> = ({
               {/* Resolution */}
               <div className="bg-black/20 rounded-lg p-3 sm:p-4 border border-white/5 hover:border-cyan-500/30 transition-all duration-300">
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="text-lg sm:text-xl">📐</span>
                   <span className="text-xs sm:text-sm text-gray-400 uppercase tracking-wide">Resolution</span>
                 </div>
-                <p className="text-lg sm:text-xl md:text-2xl font-bold text-white ml-6 sm:ml-7">
+                <p className="text-lg sm:text-xl md:text-2xl font-bold text-white">
                   {metadata.resolution}
                 </p>
-                <p className="text-xs text-gray-500 ml-6 sm:ml-7">
+                <p className="text-xs text-gray-500">
                   {metadata.width} × {metadata.height} pixels
                 </p>
               </div>
@@ -59,13 +58,12 @@ export const ImageMetadataDisplay: React.FC<ImageMetadataDisplayProps> = ({
               {/* File Size */}
               <div className="bg-black/20 rounded-lg p-3 sm:p-4 border border-white/5 hover:border-blue-500/30 transition-all duration-300">
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="text-lg sm:text-xl">💾</span>
                   <span className="text-xs sm:text-sm text-gray-400 uppercase tracking-wide">File Size</span>
                 </div>
-                <p className="text-lg sm:text-xl md:text-2xl font-bold text-white ml-6 sm:ml-7">
+                <p className="text-lg sm:text-xl md:text-2xl font-bold text-white">
                   {metadata.fileSizeFormatted}
                 </p>
-                <p className="text-xs text-gray-500 ml-6 sm:ml-7">
+                <p className="text-xs text-gray-500">
                   {metadata.fileSize.toLocaleString()} bytes
                 </p>
               </div>
@@ -73,10 +71,9 @@ export const ImageMetadataDisplay: React.FC<ImageMetadataDisplayProps> = ({
               {/* Format */}
               <div className="bg-black/20 rounded-lg p-3 sm:p-4 border border-white/5 hover:border-purple-500/30 transition-all duration-300">
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="text-lg sm:text-xl">🎨</span>
                   <span className="text-xs sm:text-sm text-gray-400 uppercase tracking-wide">Format</span>
                 </div>
-                <p className="text-lg sm:text-xl md:text-2xl font-bold text-white ml-6 sm:ml-7">
+                <p className="text-lg sm:text-xl md:text-2xl font-bold text-white">
                   {metadata.format}
                 </p>
               </div>
@@ -96,10 +93,9 @@ export const ImageMetadataDisplay: React.FC<ImageMetadataDisplayProps> = ({
               {/* AI Model */}
               <div className="bg-black/20 rounded-lg p-3 sm:p-4 border border-white/5 hover:border-purple-500/30 transition-all duration-300">
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-base sm:text-lg">🎯</span>
                   <span className="text-xs sm:text-sm text-gray-400 uppercase tracking-wide">AI Model</span>
                 </div>
-                <p className="text-sm sm:text-base font-bold text-white ml-5 sm:ml-6">
+                <p className="text-sm sm:text-base font-bold text-white">
                   MugenAI Ads 2
                 </p>
               </div>
@@ -107,10 +103,9 @@ export const ImageMetadataDisplay: React.FC<ImageMetadataDisplayProps> = ({
               {/* Image Generation */}
               <div className="bg-black/20 rounded-lg p-3 sm:p-4 border border-white/5 hover:border-emerald-500/30 transition-all duration-300">
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-base sm:text-lg">🖼️</span>
                   <span className="text-xs sm:text-sm text-gray-400 uppercase tracking-wide">Image Gen</span>
                 </div>
-                <p className="text-sm sm:text-base font-bold text-white ml-5 sm:ml-6">
+                <p className="text-sm sm:text-base font-bold text-white">
                   GPT-o3
                 </p>
               </div>
@@ -118,10 +113,9 @@ export const ImageMetadataDisplay: React.FC<ImageMetadataDisplayProps> = ({
               {/* Prompt Generation */}
               <div className="bg-black/20 rounded-lg p-3 sm:p-4 border border-white/5 hover:border-cyan-500/30 transition-all duration-300">
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-base sm:text-lg">💬</span>
                   <span className="text-xs sm:text-sm text-gray-400 uppercase tracking-wide">Prompt Gen</span>
                 </div>
-                <p className="text-sm sm:text-base font-bold text-white ml-5 sm:ml-6">
+                <p className="text-sm sm:text-base font-bold text-white">
                   Gemini 2.0 Flash-Exp
                 </p>
               </div>
@@ -129,10 +123,9 @@ export const ImageMetadataDisplay: React.FC<ImageMetadataDisplayProps> = ({
               {/* System */}
               <div className="bg-black/20 rounded-lg p-3 sm:p-4 border border-white/5 hover:border-blue-500/30 transition-all duration-300">
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-base sm:text-lg">⚙️</span>
                   <span className="text-xs sm:text-sm text-gray-400 uppercase tracking-wide">System</span>
                 </div>
-                <p className="text-sm sm:text-base font-bold text-white ml-5 sm:ml-6">
+                <p className="text-sm sm:text-base font-bold text-white">
                   4GB 1CPU Linux
                 </p>
               </div>
@@ -140,10 +133,9 @@ export const ImageMetadataDisplay: React.FC<ImageMetadataDisplayProps> = ({
               {/* Location */}
               <div className="bg-black/20 rounded-lg p-3 sm:p-4 border border-white/5 hover:border-pink-500/30 transition-all duration-300 sm:col-span-2 lg:col-span-2">
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-base sm:text-lg">🌏</span>
                   <span className="text-xs sm:text-sm text-gray-400 uppercase tracking-wide">Server Location</span>
                 </div>
-                <p className="text-sm sm:text-base font-bold text-white ml-5 sm:ml-6">
+                <p className="text-sm sm:text-base font-bold text-white">
                   Asia-Northeast (Tokyo)
                 </p>
               </div>
