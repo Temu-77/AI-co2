@@ -180,7 +180,10 @@ function App() {
 
               {/* Environmental Comparisons */}
               <div className="animate-slide-up" style={{ animationDelay: '0.1s', animationFillMode: 'backwards' }}>
-                <EnvironmentalComparisons generationCO2={co2Data.generationCO2} />
+                <EnvironmentalComparisons 
+                  generationCO2={co2Data.generationCO2} 
+                  metadata={imageMetadata || undefined}
+                />
               </div>
 
               {/* View Count Selector */}

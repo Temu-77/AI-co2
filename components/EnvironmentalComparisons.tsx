@@ -1,11 +1,18 @@
 import React, { useMemo } from 'react';
-import { ComparisonItem } from '../types';
+import { ComparisonItem, ImageMetadata } from '../types';
+import { getResolutionTier, TRADITIONAL_AD_DATA } from '../utils/adComparison';
 
 interface EnvironmentalComparisonsProps {
   generationCO2: number;
+  metadata?: ImageMetadata;
 }
 
-const EnvironmentalComparisons: React.FC<EnvironmentalComparisonsProps> = ({ generationCO2 }) => {
+const EnvironmentalComparisons: React.FC<EnvironmentalComparisonsProps> = ({ generationCO2, metadata }) => {
+  // Calculate traditional CO2 if metadata is provided
+  const traditionalCO2 = metadata ? (() => {
+    const tier = getResolutionTier(metadata);
+    return TRADITIONAL_AD_DATA[tier.name].totalCO2;
+  })() : null;
   // Define all comparison items
   const everydayComparisons: ComparisonItem[] = [
     { icon: '🚗', text: 'Driving a car for 0.5 km', category: 'everyday' },
@@ -47,67 +54,170 @@ const EnvironmentalComparisons: React.FC<EnvironmentalComparisonsProps> = ({ gen
   }, [generationCO2]); // Re-randomize when generationCO2 changes
 
   return (
-    <div className="space-y-3 sm:space-y-4 animate-fade-in">
+    <div className="space-y-6 sm:space-y-8 animate-fade-in">
       <h3 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4">
         🌍 Environmental Context
       </h3>
-      <p className="text-gray-400 text-xs sm:text-sm mb-4 sm:mb-6">
-        Generating this image has a similar CO2 impact as:
-      </p>
       
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-3 sm:gap-4">
-        {selectedComparisons.map((comparison, index) => (
-          <div
-            key={index}
-            className={`
-              relative p-4 sm:p-6 rounded-2xl backdrop-blur-xl border
-              transition-all duration-300 hover:scale-105 hover:shadow-xl
-              animate-slide-up
-              ${
-                comparison.category === 'everyday'
-                  ? 'bg-gradient-to-br from-emerald-900/30 to-green-900/20 border-emerald-500/30 hover:border-emerald-400/50'
-                  : 'bg-gradient-to-br from-cyan-900/30 to-blue-900/20 border-cyan-500/30 hover:border-cyan-400/50'
-              }
-            `}
-            style={{ animationDelay: `${index * 100}ms` }}
-          >
-            {/* Gradient border effect */}
+      {/* AI Generation Comparisons */}
+      <div className="space-y-3 sm:space-y-4">
+        <div className="flex items-center gap-2 mb-4">
+          <div className="w-3 h-3 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"></div>
+          <h4 className="text-base sm:text-lg font-semibold text-white">AI Generation Impact</h4>
+        </div>
+        <p className="text-gray-400 text-xs sm:text-sm mb-4">
+          Generating this image has a similar CO2 impact as:
+        </p>
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-3 sm:gap-4">
+          {selectedComparisons.map((comparison, index) => (
             <div
+              key={`ai-${index}`}
               className={`
-                absolute inset-0 rounded-2xl opacity-0 hover:opacity-100 transition-opacity duration-300
+                relative p-4 sm:p-6 rounded-2xl backdrop-blur-xl border
+                transition-all duration-300 hover:scale-105 hover:shadow-xl
+                animate-slide-up
                 ${
                   comparison.category === 'everyday'
-                    ? 'bg-gradient-to-br from-emerald-500/20 to-green-500/10'
-                    : 'bg-gradient-to-br from-cyan-500/20 to-blue-500/10'
+                    ? 'bg-gradient-to-br from-emerald-900/30 to-green-900/20 border-emerald-500/30 hover:border-emerald-400/50'
+                    : 'bg-gradient-to-br from-cyan-900/30 to-blue-900/20 border-cyan-500/30 hover:border-cyan-400/50'
                 }
               `}
-            />
-            
-            <div className="relative flex items-start space-x-3 sm:space-x-4">
-              <div className="text-3xl sm:text-4xl flex-shrink-0">
-                {comparison.icon}
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm sm:text-base text-white font-medium leading-relaxed">
-                  {comparison.text}
-                </p>
-                <span
-                  className={`
-                    inline-block mt-2 text-xs font-semibold px-2 py-1 rounded-full
-                    ${
-                      comparison.category === 'everyday'
-                        ? 'bg-emerald-500/20 text-emerald-300'
-                        : 'bg-cyan-500/20 text-cyan-300'
-                    }
-                  `}
-                >
-                  {comparison.category === 'everyday' ? '🌿 Everyday' : '💻 Digital'}
-                </span>
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              {/* Gradient border effect */}
+              <div
+                className={`
+                  absolute inset-0 rounded-2xl opacity-0 hover:opacity-100 transition-opacity duration-300
+                  ${
+                    comparison.category === 'everyday'
+                      ? 'bg-gradient-to-br from-emerald-500/20 to-green-500/10'
+                      : 'bg-gradient-to-br from-cyan-500/20 to-blue-500/10'
+                  }
+                `}
+              />
+              
+              <div className="relative flex items-start space-x-3 sm:space-x-4">
+                <div className="text-3xl sm:text-4xl flex-shrink-0">
+                  {comparison.icon}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm sm:text-base text-white font-medium leading-relaxed">
+                    {comparison.text}
+                  </p>
+                  <span
+                    className={`
+                      inline-block mt-2 text-xs font-semibold px-2 py-1 rounded-full
+                      ${
+                        comparison.category === 'everyday'
+                          ? 'bg-emerald-500/20 text-emerald-300'
+                          : 'bg-cyan-500/20 text-cyan-300'
+                      }
+                    `}
+                  >
+                    {comparison.category === 'everyday' ? '🌿 Everyday' : '💻 Digital'}
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
+
+      {/* Traditional Design Comparisons */}
+      {traditionalCO2 && (
+        <div className="space-y-3 sm:space-y-4">
+          <div className="flex items-center gap-2 mb-4">
+            <div className="w-3 h-3 bg-gradient-to-r from-orange-400 to-red-400 rounded-full"></div>
+            <h4 className="text-base sm:text-lg font-semibold text-white">Traditional Design Impact</h4>
+          </div>
+          <p className="text-gray-400 text-xs sm:text-sm mb-4">
+            Creating this ad traditionally would have a similar CO2 impact as:
+          </p>
+          
+          {/* Calculate traditional comparisons based on the ratio */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-3 sm:gap-4">
+            {(() => {
+              const ratio = traditionalCO2 / generationCO2;
+              return selectedComparisons.map((comparison, index) => {
+                // Scale the comparison based on traditional vs AI ratio
+                let scaledText = comparison.text;
+                
+                if (ratio > 2) {
+                  // Traditional is significantly higher
+                  scaledText = comparison.text.replace(/(\d+)/g, (match) => {
+                    const num = parseInt(match);
+                    return Math.round(num * ratio).toString();
+                  });
+                  
+                  // Handle specific cases
+                  if (comparison.text.includes('0.5 km')) scaledText = scaledText.replace('0.5', (0.5 * ratio).toFixed(1));
+                  if (comparison.text.includes('24 hours')) scaledText = scaledText.replace('24', Math.round(24 * ratio).toString());
+                  if (comparison.text.includes('2 cups')) scaledText = scaledText.replace('2', Math.round(2 * ratio).toString());
+                  if (comparison.text.includes('5-minute')) scaledText = scaledText.replace('5-minute', `${Math.round(5 * ratio)}-minute`);
+                  if (comparison.text.includes('30 minutes')) scaledText = scaledText.replace('30', Math.round(30 * ratio).toString());
+                  if (comparison.text.includes('2 hours')) scaledText = scaledText.replace('2', Math.round(2 * ratio).toString());
+                  if (comparison.text.includes('8 hours')) scaledText = scaledText.replace('8', Math.round(8 * ratio).toString());
+                  if (comparison.text.includes('3 hours')) scaledText = scaledText.replace('3', Math.round(3 * ratio).toString());
+                  if (comparison.text.includes('2 days')) scaledText = scaledText.replace('2', Math.round(2 * ratio).toString());
+                }
+                
+                return (
+                  <div
+                    key={`traditional-${index}`}
+                    className={`
+                      relative p-4 sm:p-6 rounded-2xl backdrop-blur-xl border
+                      transition-all duration-300 hover:scale-105 hover:shadow-xl
+                      animate-slide-up
+                      ${
+                        comparison.category === 'everyday'
+                          ? 'bg-gradient-to-br from-orange-900/30 to-red-900/20 border-orange-500/30 hover:border-orange-400/50'
+                          : 'bg-gradient-to-br from-red-900/30 to-pink-900/20 border-red-500/30 hover:border-red-400/50'
+                      }
+                    `}
+                    style={{ animationDelay: `${(index + 4) * 100}ms` }}
+                  >
+                    {/* Gradient border effect */}
+                    <div
+                      className={`
+                        absolute inset-0 rounded-2xl opacity-0 hover:opacity-100 transition-opacity duration-300
+                        ${
+                          comparison.category === 'everyday'
+                            ? 'bg-gradient-to-br from-orange-500/20 to-red-500/10'
+                            : 'bg-gradient-to-br from-red-500/20 to-pink-500/10'
+                        }
+                      `}
+                    />
+                    
+                    <div className="relative flex items-start space-x-3 sm:space-x-4">
+                      <div className="text-3xl sm:text-4xl flex-shrink-0">
+                        {comparison.icon}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm sm:text-base text-white font-medium leading-relaxed">
+                          {scaledText}
+                        </p>
+                        <span
+                          className={`
+                            inline-block mt-2 text-xs font-semibold px-2 py-1 rounded-full
+                            ${
+                              comparison.category === 'everyday'
+                                ? 'bg-orange-500/20 text-orange-300'
+                                : 'bg-red-500/20 text-red-300'
+                            }
+                          `}
+                        >
+                          {comparison.category === 'everyday' ? '🌿 Everyday' : '💻 Digital'}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                );
+              });
+            })()}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
