@@ -115,7 +115,7 @@ function App() {
             AI Ad Banner CO₂ Calculator
           </h1>
           <p className="text-gray-400 text-base sm:text-lg md:text-xl max-w-3xl mx-auto animate-fade-in px-4" style={{ animationDelay: '0.1s', animationFillMode: 'backwards' }}>
-            Discover the environmental impact of AI-generated ad banners 🌍
+            Discover the environmental impact of Ad banners 🌍
           </p>
         </header>
 
