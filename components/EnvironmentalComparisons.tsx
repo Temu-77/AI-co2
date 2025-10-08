@@ -135,32 +135,48 @@ const EnvironmentalComparisons: React.FC<EnvironmentalComparisonsProps> = ({ gen
             Creating this ad traditionally would have a similar CO2 impact as:
           </p>
           
-          {/* Calculate traditional comparisons based on the ratio */}
+          {/* Traditional comparisons with appropriate higher-impact activities */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-3 sm:gap-4">
             {(() => {
-              const ratio = traditionalCO2 / generationCO2;
-              return selectedComparisons.map((comparison, index) => {
-                // Scale the comparison based on traditional vs AI ratio
-                let scaledText = comparison.text;
-                
-                if (ratio > 2) {
-                  // Traditional is significantly higher
-                  scaledText = comparison.text.replace(/(\d+)/g, (match) => {
-                    const num = parseInt(match);
-                    return Math.round(num * ratio).toString();
-                  });
-                  
-                  // Handle specific cases
-                  if (comparison.text.includes('0.5 km')) scaledText = scaledText.replace('0.5', (0.5 * ratio).toFixed(1));
-                  if (comparison.text.includes('24 hours')) scaledText = scaledText.replace('24', Math.round(24 * ratio).toString());
-                  if (comparison.text.includes('2 cups')) scaledText = scaledText.replace('2', Math.round(2 * ratio).toString());
-                  if (comparison.text.includes('5-minute')) scaledText = scaledText.replace('5-minute', `${Math.round(5 * ratio)}-minute`);
-                  if (comparison.text.includes('30 minutes')) scaledText = scaledText.replace('30', Math.round(30 * ratio).toString());
-                  if (comparison.text.includes('2 hours')) scaledText = scaledText.replace('2', Math.round(2 * ratio).toString());
-                  if (comparison.text.includes('8 hours')) scaledText = scaledText.replace('8', Math.round(8 * ratio).toString());
-                  if (comparison.text.includes('3 hours')) scaledText = scaledText.replace('3', Math.round(3 * ratio).toString());
-                  if (comparison.text.includes('2 days')) scaledText = scaledText.replace('2', Math.round(2 * ratio).toString());
+              // Create appropriate comparisons for traditional design's higher CO2 impact
+              const traditionalComparisons: ComparisonItem[] = [
+                { icon: '🚗', text: 'Driving a car for 5 km', category: 'everyday' },
+                { icon: '💡', text: 'Running a LED bulb for 5 days', category: 'everyday' },
+                { icon: '☕', text: 'Making 20 cups of coffee', category: 'everyday' },
+                { icon: '🍔', text: 'Eating a large restaurant meal', category: 'everyday' },
+                { icon: '🚿', text: 'Taking a 30-minute hot shower', category: 'everyday' },
+                { icon: '📱', text: 'Charging your phone 100 times', category: 'everyday' },
+                { icon: '🌳', text: 'What a tree absorbs in 3 weeks', category: 'everyday' },
+                { icon: '🔥', text: 'Burning candles for 3 days', category: 'everyday' },
+                { icon: '📧', text: 'Sending 10,000 emails', category: 'digital' },
+                { icon: '🎬', text: 'Streaming 5 hours of HD video', category: 'digital' },
+                { icon: '☁️', text: 'Storing 1TB in the cloud for a month', category: 'digital' },
+                { icon: '🎮', text: 'Gaming online for 20 hours', category: 'digital' },
+                { icon: '💻', text: 'Running a laptop for 3 days', category: 'digital' },
+                { icon: '📹', text: 'A full day of video calls', category: 'digital' },
+                { icon: '🔍', text: 'Making 5,000 Google searches', category: 'digital' },
+                { icon: '📲', text: 'Scrolling social media for 2 days', category: 'digital' },
+              ];
+
+              // Randomly select 2 everyday and 2 digital comparisons for traditional
+              const shuffleArray = <T,>(array: T[]): T[] => {
+                const shuffled = [...array];
+                for (let i = shuffled.length - 1; i > 0; i--) {
+                  const j = Math.floor(Math.random() * (i + 1));
+                  [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
                 }
+                return shuffled;
+              };
+
+              const traditionalEveryday = traditionalComparisons.filter(c => c.category === 'everyday');
+              const traditionalDigital = traditionalComparisons.filter(c => c.category === 'digital');
+              
+              const selectedTraditionalEveryday = shuffleArray(traditionalEveryday).slice(0, 2);
+              const selectedTraditionalDigital = shuffleArray(traditionalDigital).slice(0, 2);
+              
+              const selectedTraditionalComparisons = [...selectedTraditionalEveryday, ...selectedTraditionalDigital];
+
+              return selectedTraditionalComparisons.map((comparison, index) => {
                 
                 return (
                   <div
@@ -195,7 +211,7 @@ const EnvironmentalComparisons: React.FC<EnvironmentalComparisonsProps> = ({ gen
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-sm sm:text-base text-white font-medium leading-relaxed">
-                          {scaledText}
+                          {comparison.text}
                         </p>
                         <span
                           className={`
