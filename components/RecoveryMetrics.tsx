@@ -108,13 +108,13 @@ export const RecoveryMetrics: React.FC<ExtendedRecoveryMetricsProps> = ({
       iconColor: 'text-emerald-400'
     },
     {
-      icon: Recycle,
-      value: animatedPlastic,
-      label: 'Plastic Bottles',
-      description: 'to recycle to offset',
-      color: 'from-blue-500 to-cyan-600',
-      bgColor: 'bg-blue-500/10',
-      iconColor: 'text-blue-400'
+      icon: Droplet,
+      value: animatedOcean,
+      label: 'Ocean Hours',
+      description: 'for natural absorption',
+      color: 'from-cyan-500 to-blue-600',
+      bgColor: 'bg-cyan-500/10',
+      iconColor: 'text-cyan-400'
     },
     {
       icon: Bike,
@@ -126,13 +126,13 @@ export const RecoveryMetrics: React.FC<ExtendedRecoveryMetricsProps> = ({
       iconColor: 'text-orange-400'
     },
     {
-      icon: Droplet,
-      value: animatedOcean,
-      label: 'Ocean Hours',
-      description: 'for natural absorption',
-      color: 'from-cyan-500 to-blue-600',
-      bgColor: 'bg-cyan-500/10',
-      iconColor: 'text-cyan-400'
+      icon: Recycle,
+      value: animatedPlastic,
+      label: 'Plastic Bottles',
+      description: 'to recycle to offset',
+      color: 'from-blue-500 to-cyan-600',
+      bgColor: 'bg-blue-500/10',
+      iconColor: 'text-blue-400'
     }
   ];
 
@@ -147,13 +147,13 @@ export const RecoveryMetrics: React.FC<ExtendedRecoveryMetricsProps> = ({
       iconColor: 'text-emerald-400'
     },
     {
-      icon: Recycle,
-      value: animatedTraditionalPlastic,
-      label: 'Plastic Bottles',
-      description: 'to recycle to offset',
-      color: 'from-blue-500 to-cyan-600',
-      bgColor: 'bg-blue-500/10',
-      iconColor: 'text-blue-400'
+      icon: Droplet,
+      value: animatedTraditionalOcean,
+      label: 'Ocean Hours',
+      description: 'for natural absorption',
+      color: 'from-cyan-500 to-blue-600',
+      bgColor: 'bg-cyan-500/10',
+      iconColor: 'text-cyan-400'
     },
     {
       icon: Bike,
@@ -165,13 +165,13 @@ export const RecoveryMetrics: React.FC<ExtendedRecoveryMetricsProps> = ({
       iconColor: 'text-orange-400'
     },
     {
-      icon: Droplet,
-      value: animatedTraditionalOcean,
-      label: 'Ocean Hours',
-      description: 'for natural absorption',
-      color: 'from-cyan-500 to-blue-600',
-      bgColor: 'bg-cyan-500/10',
-      iconColor: 'text-cyan-400'
+      icon: Recycle,
+      value: animatedTraditionalPlastic,
+      label: 'Plastic Bottles',
+      description: 'to recycle to offset',
+      color: 'from-blue-500 to-cyan-600',
+      bgColor: 'bg-blue-500/10',
+      iconColor: 'text-blue-400'
     }
   ] : null;
 

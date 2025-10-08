@@ -22,7 +22,7 @@ function App() {
   const [co2Data, setCO2Data] = useState<CO2Data | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [viewCount, setViewCount] = useState<number>(1000000); // Default 1M views
+  const [viewCount, setViewCount] = useState<number>(1000); // Default 1K views
   const [imagePreview, setImagePreview] = useState<string | null>(null);
 
   // Handle image upload
@@ -98,7 +98,7 @@ function App() {
     setCO2Data(null);
     setError(null);
     setImagePreview(null);
-    setViewCount(1000000);
+    setViewCount(1000);
   };
 
   // Calculate transmission and total CO2
