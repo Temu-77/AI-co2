@@ -201,12 +201,17 @@ function App() {
                   transmissionCO2={transmissionCO2}
                   totalCO2={totalCO2}
                   viewCount={viewCount}
+                  metadata={imageMetadata || undefined}
                 />
               </div>
 
               {/* Recovery Metrics */}
               <div className="animate-slide-up" style={{ animationDelay: '0.4s', animationFillMode: 'backwards' }}>
-                <RecoveryMetrics totalCO2kg={totalCO2kg} />
+                <RecoveryMetrics 
+                  totalCO2kg={totalCO2kg}
+                  metadata={imageMetadata || undefined}
+                  transmissionCO2={transmissionCO2}
+                />
               </div>
 
 
