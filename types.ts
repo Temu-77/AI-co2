@@ -22,6 +22,16 @@ export interface CO2Data {
   confidence?: string; // "high", "medium", "low"
 }
 
+export interface TraditionalCO2Data {
+  designCO2: number; // in grams
+  designTime: number; // in hours
+  revisions: number;
+  stockPhotos: number;
+  photoshoot: boolean;
+  complexity: 'Basic' | 'Standard' | 'Premium' | 'Enterprise';
+  confidence?: string; // "high", "medium", "low"
+}
+
 export interface ComparisonItem {
   icon: string; // emoji
   text: string;

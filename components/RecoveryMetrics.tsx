@@ -1,26 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { Leaf, Recycle, Bike, Droplet } from 'lucide-react';
-import { RecoveryMetricsProps, ImageMetadata } from '../types';
+import { RecoveryMetricsProps, TraditionalCO2Data } from '../types';
 import { calculateRecoveryMetrics } from '../utils/co2Calculations';
-import { getResolutionTier, TRADITIONAL_AD_DATA } from '../utils/adComparison';
 
 interface ExtendedRecoveryMetricsProps extends RecoveryMetricsProps {
-  metadata?: ImageMetadata;
+  traditionalData?: TraditionalCO2Data;
   transmissionCO2: number;
 }
 
 export const RecoveryMetrics: React.FC<ExtendedRecoveryMetricsProps> = ({ 
   totalCO2kg, 
-  metadata, 
+  traditionalData, 
   transmissionCO2
 }) => {
   const metrics = calculateRecoveryMetrics(totalCO2kg);
   
-  // Calculate traditional CO2 and metrics if metadata is provided
-  const traditionalCO2 = metadata ? (() => {
-    const tier = getResolutionTier(metadata);
-    return TRADITIONAL_AD_DATA[tier.name].totalCO2;
-  })() : null;
+  // Get traditional CO2 from API data
+  const traditionalCO2 = traditionalData?.designCO2 || null;
 
   const traditionalTotalCO2kg = traditionalCO2 ? (traditionalCO2 + transmissionCO2) / 1000 : null;
   const traditionalMetrics = traditionalTotalCO2kg ? calculateRecoveryMetrics(traditionalTotalCO2kg) : null;

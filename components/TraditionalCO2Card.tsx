@@ -1,25 +1,22 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Users } from 'lucide-react';
-import { ImageMetadata } from '../types';
-import { getResolutionTier, TRADITIONAL_AD_DATA } from '../utils/adComparison';
+import { TraditionalCO2Data } from '../types';
 import { formatCO2Value } from '../utils/co2Calculations';
 
 interface TraditionalCO2CardProps {
-  metadata: ImageMetadata;
+  traditionalData: TraditionalCO2Data;
   isAnimating?: boolean;
 }
 
 export const TraditionalCO2Card: React.FC<TraditionalCO2CardProps> = ({
-  metadata,
+  traditionalData,
   isAnimating = true
 }) => {
   const [displayValue, setDisplayValue] = useState(0);
   const animationFrameRef = useRef<number>();
 
-  // Get traditional CO2 based on resolution tier
-  const tier = getResolutionTier(metadata);
-  const traditionalData = TRADITIONAL_AD_DATA[tier.name];
-  const traditionalCO2 = traditionalData.totalCO2;
+  // Get traditional CO2 from API data
+  const traditionalCO2 = traditionalData.designCO2;
 
   useEffect(() => {
     if (!isAnimating) {
@@ -84,7 +81,7 @@ export const TraditionalCO2Card: React.FC<TraditionalCO2CardProps> = ({
           <div className="space-y-2 text-gray-400">
             <p className="flex items-center justify-center gap-2 text-sm sm:text-base">
               <span>⏱️</span>
-              <span>{tier.name} ({traditionalData.designTime}h design)</span>
+              <span>{traditionalData.complexity} ({traditionalData.designTime}h design)</span>
             </p>
             <p className="text-xs sm:text-sm flex items-center justify-center gap-2">
               <span>🔄</span>

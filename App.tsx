@@ -11,15 +11,16 @@ import { ImpactSummary } from './components/ImpactSummary';
 import { RecoveryMetrics } from './components/RecoveryMetrics';
 import { TraditionalCO2Card } from './components/TraditionalCO2Card';
 import { extractImageMetadata } from './utils/imageProcessing';
-import { estimateCO2Emissions } from './utils/openai';
+import { estimateCO2Emissions, estimateTraditionalCO2Emissions } from './utils/openai';
 import { calculateTotalCO2 } from './utils/co2Calculations';
-import type { ImageMetadata, CO2Data } from './types';
+import type { ImageMetadata, CO2Data, TraditionalCO2Data } from './types';
 
 function App() {
   // State management
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
   const [imageMetadata, setImageMetadata] = useState<ImageMetadata | null>(null);
   const [co2Data, setCO2Data] = useState<CO2Data | null>(null);
+  const [traditionalCO2Data, setTraditionalCO2Data] = useState<TraditionalCO2Data | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [viewCount, setViewCount] = useState<number>(1000); // Default 1K views
@@ -47,17 +48,23 @@ function App() {
     }
   };
 
-  // Call OpenAI API when imageMetadata changes
+  // Call both OpenAI APIs when imageMetadata changes
   useEffect(() => {
     if (!imageMetadata) return;
 
-    const fetchCO2Data = async () => {
+    const fetchBothCO2Data = async () => {
       setIsLoading(true);
       setError(null);
       
       try {
-        const data = await estimateCO2Emissions(imageMetadata);
-        setCO2Data(data);
+        // Make both API calls simultaneously
+        const [aiData, traditionalData] = await Promise.all([
+          estimateCO2Emissions(imageMetadata),
+          estimateTraditionalCO2Emissions(imageMetadata)
+        ]);
+        
+        setCO2Data(aiData);
+        setTraditionalCO2Data(traditionalData);
       } catch (err) {
         const errorMessage = err instanceof Error ? err.message : 'Failed to estimate CO2 emissions';
         setError(errorMessage);
@@ -66,7 +73,7 @@ function App() {
       }
     };
 
-    fetchCO2Data();
+    fetchBothCO2Data();
   }, [imageMetadata]);
 
   // Handle view count change
@@ -96,6 +103,7 @@ function App() {
     setUploadedImage(null);
     setImageMetadata(null);
     setCO2Data(null);
+    setTraditionalCO2Data(null);
     setError(null);
     setImagePreview(null);
     setViewCount(1000);
@@ -169,10 +177,10 @@ function App() {
                   isAnimating={true} 
                 />
                 
-                {/* Traditional Design CO2 Card */}
-                {imageMetadata && (
+                {/* Traditional Creation CO2 Card */}
+                {traditionalCO2Data && (
                   <TraditionalCO2Card 
-                    metadata={imageMetadata}
+                    traditionalData={traditionalCO2Data}
                     isAnimating={true}
                   />
                 )}
@@ -182,7 +190,7 @@ function App() {
               <div className="animate-slide-up" style={{ animationDelay: '0.1s', animationFillMode: 'backwards' }}>
                 <EnvironmentalComparisons 
                   generationCO2={co2Data.generationCO2} 
-                  metadata={imageMetadata || undefined}
+                  traditionalData={traditionalCO2Data || undefined}
                 />
               </div>
 
@@ -201,7 +209,7 @@ function App() {
                   transmissionCO2={transmissionCO2}
                   totalCO2={totalCO2}
                   viewCount={viewCount}
-                  metadata={imageMetadata || undefined}
+                  traditionalData={traditionalCO2Data || undefined}
                 />
               </div>
 
@@ -209,7 +217,7 @@ function App() {
               <div className="animate-slide-up" style={{ animationDelay: '0.4s', animationFillMode: 'backwards' }}>
                 <RecoveryMetrics 
                   totalCO2kg={totalCO2kg}
-                  metadata={imageMetadata || undefined}
+                  traditionalData={traditionalCO2Data || undefined}
                   transmissionCO2={transmissionCO2}
                 />
               </div>

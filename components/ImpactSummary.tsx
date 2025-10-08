@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ImpactSummaryProps, ImageMetadata } from '../types';
+import { ImpactSummaryProps, TraditionalCO2Data } from '../types';
 import { formatCO2Value } from '../utils/co2Calculations';
-import { getResolutionTier, TRADITIONAL_AD_DATA } from '../utils/adComparison';
 
 interface ExtendedImpactSummaryProps extends ImpactSummaryProps {
-  metadata?: ImageMetadata;
+  traditionalData?: TraditionalCO2Data;
 }
 
 export const ImpactSummary: React.FC<ExtendedImpactSummaryProps> = ({
@@ -12,18 +11,15 @@ export const ImpactSummary: React.FC<ExtendedImpactSummaryProps> = ({
   transmissionCO2,
   totalCO2,
   viewCount,
-  metadata
+  traditionalData
 }) => {
   const [displayTotal, setDisplayTotal] = useState(0);
   const [displayTraditionalTotal, setDisplayTraditionalTotal] = useState(0);
   const animationFrameRef = useRef<number>();
   const traditionalAnimationFrameRef = useRef<number>();
 
-  // Calculate traditional CO2 if metadata is provided
-  const traditionalCO2 = metadata ? (() => {
-    const tier = getResolutionTier(metadata);
-    return TRADITIONAL_AD_DATA[tier.name].totalCO2;
-  })() : null;
+  // Get traditional CO2 from API data
+  const traditionalCO2 = traditionalData?.designCO2 || null;
 
   // Traditional total includes design CO2 + transmission (same as AI)
   const traditionalTotalCO2 = traditionalCO2 ? traditionalCO2 + transmissionCO2 : null;

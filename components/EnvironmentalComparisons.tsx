@@ -1,18 +1,14 @@
 import React, { useMemo } from 'react';
-import { ComparisonItem, ImageMetadata } from '../types';
-import { getResolutionTier, TRADITIONAL_AD_DATA } from '../utils/adComparison';
+import { ComparisonItem, TraditionalCO2Data } from '../types';
 
 interface EnvironmentalComparisonsProps {
   generationCO2: number;
-  metadata?: ImageMetadata;
+  traditionalData?: TraditionalCO2Data;
 }
 
-const EnvironmentalComparisons: React.FC<EnvironmentalComparisonsProps> = ({ generationCO2, metadata }) => {
-  // Calculate traditional CO2 if metadata is provided
-  const traditionalCO2 = metadata ? (() => {
-    const tier = getResolutionTier(metadata);
-    return TRADITIONAL_AD_DATA[tier.name].totalCO2;
-  })() : null;
+const EnvironmentalComparisons: React.FC<EnvironmentalComparisonsProps> = ({ generationCO2, traditionalData }) => {
+  // Get traditional CO2 from API data
+  const traditionalCO2 = traditionalData?.designCO2 || null;
   // Define all comparison items
   const everydayComparisons: ComparisonItem[] = [
     { icon: '🚗', text: 'Driving a car for 0.5 km', category: 'everyday' },
