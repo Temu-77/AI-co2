@@ -9,7 +9,7 @@ import ViewCountSelector from './components/ViewCountSelector';
 import EnvironmentalComparisons from './components/EnvironmentalComparisons';
 import { ImpactSummary } from './components/ImpactSummary';
 import { RecoveryMetrics } from './components/RecoveryMetrics';
-import { AIvsTraditionalComparison } from './components/AIvsTraditionalComparison';
+import { TraditionalCO2Card } from './components/TraditionalCO2Card';
 import { extractImageMetadata } from './utils/imageProcessing';
 import { estimateCO2Emissions } from './utils/openai';
 import { calculateTotalCO2 } from './utils/co2Calculations';
@@ -161,12 +161,21 @@ function App() {
           {/* Results Section - Only show when we have CO2 data and no error */}
           {co2Data && !error && !isLoading && (
             <>
-              {/* Generation CO2 Card */}
-              <div className="animate-slide-up">
+              {/* CO2 Cards - Side by Side */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 animate-slide-up">
+                {/* AI Generation CO2 Card */}
                 <CO2EmissionCard 
                   generationCO2={co2Data.generationCO2} 
                   isAnimating={true} 
                 />
+                
+                {/* Traditional Design CO2 Card */}
+                {imageMetadata && (
+                  <TraditionalCO2Card 
+                    metadata={imageMetadata}
+                    isAnimating={true}
+                  />
+                )}
               </div>
 
               {/* Environmental Comparisons */}
@@ -197,15 +206,7 @@ function App() {
                 <RecoveryMetrics totalCO2kg={totalCO2kg} />
               </div>
 
-              {/* AI vs Traditional Comparison */}
-              {imageMetadata && (
-                <div className="animate-slide-up" style={{ animationDelay: '0.5s', animationFillMode: 'backwards' }}>
-                  <AIvsTraditionalComparison 
-                    metadata={imageMetadata}
-                    aiGeneratedCO2={co2Data.generationCO2}
-                  />
-                </div>
-              )}
+
 
               {/* Upload New Image Button */}
               <div className="text-center pt-6 sm:pt-8 animate-fade-in" style={{ animationDelay: '0.6s', animationFillMode: 'backwards' }}>
