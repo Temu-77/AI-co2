@@ -63,7 +63,7 @@ const EnvironmentalComparisons: React.FC<EnvironmentalComparisonsProps> = ({ gen
       <div className="space-y-3 sm:space-y-4">
         <div className="flex items-center gap-2 mb-4">
           <div className="w-3 h-3 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"></div>
-          <h4 className="text-base sm:text-lg font-semibold text-white">AI Generation Impact</h4>
+          <h4 className="text-base sm:text-lg font-semibold text-white">AI Creation Impact</h4>
         </div>
         <p className="text-gray-400 text-xs sm:text-sm mb-4">
           Generating this image has a similar CO2 impact as:
@@ -129,7 +129,7 @@ const EnvironmentalComparisons: React.FC<EnvironmentalComparisonsProps> = ({ gen
         <div className="space-y-3 sm:space-y-4">
           <div className="flex items-center gap-2 mb-4">
             <div className="w-3 h-3 bg-gradient-to-r from-orange-400 to-red-400 rounded-full"></div>
-            <h4 className="text-base sm:text-lg font-semibold text-white">Traditional Design Impact</h4>
+            <h4 className="text-base sm:text-lg font-semibold text-white">Traditional Creation Impact</h4>
           </div>
           <p className="text-gray-400 text-xs sm:text-sm mb-4">
             Creating this ad traditionally would have a similar CO2 impact as:

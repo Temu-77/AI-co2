@@ -188,7 +188,7 @@ export const RecoveryMetrics: React.FC<ExtendedRecoveryMetricsProps> = ({
       <div className="space-y-4">
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"></div>
-          <h3 className="text-lg sm:text-xl font-semibold text-white">AI Generation Recovery</h3>
+          <h3 className="text-lg sm:text-xl font-semibold text-white">AI Creation Recovery</h3>
         </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
@@ -231,7 +231,7 @@ export const RecoveryMetrics: React.FC<ExtendedRecoveryMetricsProps> = ({
         <div className="space-y-4">
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 bg-gradient-to-r from-orange-400 to-red-400 rounded-full"></div>
-            <h3 className="text-lg sm:text-xl font-semibold text-white">Traditional Design Recovery</h3>
+            <h3 className="text-lg sm:text-xl font-semibold text-white">Traditional Creation Recovery</h3>
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">

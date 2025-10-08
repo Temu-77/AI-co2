@@ -70,7 +70,7 @@ export const TraditionalCO2Card: React.FC<TraditionalCO2CardProps> = ({
           {/* Title */}
           <h3 className="text-lg sm:text-xl font-semibold text-gray-300 flex items-center justify-center gap-2">
             <Users className="w-5 h-5" />
-            <span>Traditional Design CO₂</span>
+            <span>Traditional Creation CO₂</span>
           </h3>
 
           {/* Large animated CO2 value */}

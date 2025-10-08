@@ -128,7 +128,7 @@ export const ImpactSummary: React.FC<ExtendedImpactSummaryProps> = ({
               <div className="text-center">
                 <div className="flex items-center justify-center gap-2 mb-2">
                   <div className="w-3 h-3 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"></div>
-                  <h4 className="text-lg sm:text-xl font-semibold text-white">AI Generation</h4>
+                  <h4 className="text-lg sm:text-xl font-semibold text-white">AI Creation</h4>
                 </div>
               </div>
 
@@ -162,12 +162,12 @@ export const ImpactSummary: React.FC<ExtendedImpactSummaryProps> = ({
 
                 {/* AI Breakdown details */}
                 <div className="space-y-2">
-                  {/* Generation CO2 */}
+                  {/* Creation CO2 */}
                   <div className="bg-gray-800/30 rounded-lg p-3 border border-emerald-500/20">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <span className="text-lg">🎨</span>
-                        <span className="text-xs font-semibold text-emerald-400">Generation</span>
+                        <span className="text-xs font-semibold text-emerald-400">Creation</span>
                       </div>
                       <div className="text-right">
                         <div className="text-lg font-bold text-white">
@@ -216,7 +216,7 @@ export const ImpactSummary: React.FC<ExtendedImpactSummaryProps> = ({
                 <div className="text-center">
                   <div className="flex items-center justify-center gap-2 mb-2">
                     <div className="w-3 h-3 bg-gradient-to-r from-orange-400 to-red-400 rounded-full"></div>
-                    <h4 className="text-lg sm:text-xl font-semibold text-white">Traditional Design</h4>
+                    <h4 className="text-lg sm:text-xl font-semibold text-white">Traditional Creation</h4>
                   </div>
                 </div>
 
@@ -257,12 +257,12 @@ export const ImpactSummary: React.FC<ExtendedImpactSummaryProps> = ({
 
                         {/* Traditional Breakdown details */}
                         <div className="space-y-2">
-                          {/* Design CO2 */}
+                          {/* Creation CO2 */}
                           <div className="bg-gray-800/30 rounded-lg p-3 border border-orange-500/20">
                             <div className="flex items-center justify-between">
                               <div className="flex items-center gap-2">
-                                <span className="text-lg">👨‍🎨</span>
-                                <span className="text-xs font-semibold text-orange-400">Design</span>
+                                <span className="text-lg">🎨</span>
+                                <span className="text-xs font-semibold text-orange-400">Creation</span>
                               </div>
                               <div className="text-right">
                                 <div className="text-lg font-bold text-white">

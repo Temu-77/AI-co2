@@ -163,7 +163,7 @@ function App() {
             <>
               {/* CO2 Cards - Side by Side */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 animate-slide-up">
-                {/* AI Generation CO2 Card */}
+                {/* AI Creation CO2 Card */}
                 <CO2EmissionCard 
                   generationCO2={co2Data.generationCO2} 
                   isAnimating={true} 
