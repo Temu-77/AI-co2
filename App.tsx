@@ -9,6 +9,7 @@ import ViewCountSelector from './components/ViewCountSelector';
 import EnvironmentalComparisons from './components/EnvironmentalComparisons';
 import { ImpactSummary } from './components/ImpactSummary';
 import { RecoveryMetrics } from './components/RecoveryMetrics';
+import { AIvsTraditionalComparison } from './components/AIvsTraditionalComparison';
 import { extractImageMetadata } from './utils/imageProcessing';
 import { estimateCO2Emissions } from './utils/openai';
 import { calculateTotalCO2 } from './utils/co2Calculations';
@@ -196,8 +197,18 @@ function App() {
                 <RecoveryMetrics totalCO2kg={totalCO2kg} />
               </div>
 
+              {/* AI vs Traditional Comparison */}
+              {imageMetadata && (
+                <div className="animate-slide-up" style={{ animationDelay: '0.5s', animationFillMode: 'backwards' }}>
+                  <AIvsTraditionalComparison 
+                    metadata={imageMetadata}
+                    aiGeneratedCO2={co2Data.generationCO2}
+                  />
+                </div>
+              )}
+
               {/* Upload New Image Button */}
-              <div className="text-center pt-6 sm:pt-8 animate-fade-in" style={{ animationDelay: '0.5s', animationFillMode: 'backwards' }}>
+              <div className="text-center pt-6 sm:pt-8 animate-fade-in" style={{ animationDelay: '0.6s', animationFillMode: 'backwards' }}>
                 <button
                   onClick={handleUploadNew}
                   className="min-h-[44px] min-w-[44px] px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold rounded-xl transition-all duration-200 hover:scale-105 active:scale-95 shadow-lg hover:shadow-purple-500/50 text-sm sm:text-base"
