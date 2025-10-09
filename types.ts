@@ -136,9 +136,9 @@ export type ViewCountOption = 1000 | 10000 | 100000 | 1000000 | 10000000 | 10000
 
 export interface RecoveryMetrics {
   treesToPlant: number;
+  beeHotels: number;
+  walkingWeeks: number;
   plasticBottles: number;
-  bikeKilometers: number;
-  oceanAbsorptionHours: number;
 }
 
 export type ImageFormat = 'PNG' | 'JPG' | 'JPEG' | 'WEBP' | 'GIF';

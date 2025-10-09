@@ -32,20 +32,20 @@ export function calculateRecoveryMetrics(totalCO2kg: number): RecoveryMetrics {
 
   // Based on environmental research averages:
   // - One tree absorbs ~21 kg CO2 per year
+  // - One bee hotel supports pollinators that offset ~5 kg CO2 through ecosystem services
+  // - Walking to school instead of car ride saves ~2 kg CO2 per week
   // - Recycling one plastic bottle saves ~0.03 kg CO2
-  // - Biking 1 km vs driving saves ~0.21 kg CO2
-  // - Ocean absorbs CO2 at rate of ~0.0001 kg per hour per square meter (scaled)
   
   const treesToPlant = totalCO2kg / 21;
+  const beeHotels = totalCO2kg / 5;
+  const walkingWeeks = totalCO2kg / 2;
   const plasticBottles = totalCO2kg / 0.03;
-  const bikeKilometers = totalCO2kg / 0.21;
-  const oceanAbsorptionHours = totalCO2kg / 0.0001;
 
   return {
     treesToPlant: Math.ceil(treesToPlant),
-    plasticBottles: Math.ceil(plasticBottles),
-    bikeKilometers: Math.round(bikeKilometers * 10) / 10, // Round to 1 decimal
-    oceanAbsorptionHours: Math.round(oceanAbsorptionHours)
+    beeHotels: Math.ceil(beeHotels),
+    walkingWeeks: Math.ceil(walkingWeeks),
+    plasticBottles: Math.ceil(plasticBottles)
   };
 }
 

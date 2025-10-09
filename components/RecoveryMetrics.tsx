@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Leaf, Recycle, Bike, Droplet } from 'lucide-react';
+import { Leaf, Recycle, Home, Footprints } from 'lucide-react';
 import { RecoveryMetricsProps, TraditionalCO2Data } from '../types';
 import { calculateRecoveryMetrics } from '../utils/co2Calculations';
 
@@ -23,15 +23,15 @@ export const RecoveryMetrics: React.FC<ExtendedRecoveryMetricsProps> = ({
   
   // AI animation states
   const [animatedTrees, setAnimatedTrees] = useState(0);
+  const [animatedBeeHotels, setAnimatedBeeHotels] = useState(0);
+  const [animatedWalking, setAnimatedWalking] = useState(0);
   const [animatedPlastic, setAnimatedPlastic] = useState(0);
-  const [animatedBike, setAnimatedBike] = useState(0);
-  const [animatedOcean, setAnimatedOcean] = useState(0);
 
   // Traditional animation states
   const [animatedTraditionalTrees, setAnimatedTraditionalTrees] = useState(0);
+  const [animatedTraditionalBeeHotels, setAnimatedTraditionalBeeHotels] = useState(0);
+  const [animatedTraditionalWalking, setAnimatedTraditionalWalking] = useState(0);
   const [animatedTraditionalPlastic, setAnimatedTraditionalPlastic] = useState(0);
-  const [animatedTraditionalBike, setAnimatedTraditionalBike] = useState(0);
-  const [animatedTraditionalOcean, setAnimatedTraditionalOcean] = useState(0);
 
   // Animate AI metrics
   useEffect(() => {
@@ -45,22 +45,22 @@ export const RecoveryMetrics: React.FC<ExtendedRecoveryMetricsProps> = ({
       const progress = frame / steps;
 
       setAnimatedTrees(Math.floor(metrics.treesToPlant * progress));
+      setAnimatedBeeHotels(Math.floor(metrics.beeHotels * progress));
+      setAnimatedWalking(Math.floor(metrics.walkingWeeks * progress));
       setAnimatedPlastic(Math.floor(metrics.plasticBottles * progress));
-      setAnimatedBike(Math.floor(metrics.bikeKilometers * progress * 10) / 10);
-      setAnimatedOcean(Math.floor(metrics.oceanAbsorptionHours * progress));
 
       if (frame >= steps) {
         clearInterval(timer);
         // Set final values to ensure accuracy
         setAnimatedTrees(metrics.treesToPlant);
+        setAnimatedBeeHotels(metrics.beeHotels);
+        setAnimatedWalking(metrics.walkingWeeks);
         setAnimatedPlastic(metrics.plasticBottles);
-        setAnimatedBike(metrics.bikeKilometers);
-        setAnimatedOcean(metrics.oceanAbsorptionHours);
       }
     }, interval);
 
     return () => clearInterval(timer);
-  }, [metrics.treesToPlant, metrics.plasticBottles, metrics.bikeKilometers, metrics.oceanAbsorptionHours]);
+  }, [metrics.treesToPlant, metrics.beeHotels, metrics.walkingWeeks, metrics.plasticBottles]);
 
   // Animate traditional metrics
   useEffect(() => {
@@ -76,56 +76,56 @@ export const RecoveryMetrics: React.FC<ExtendedRecoveryMetricsProps> = ({
       const progress = frame / steps;
 
       setAnimatedTraditionalTrees(Math.floor(traditionalMetrics.treesToPlant * progress));
+      setAnimatedTraditionalBeeHotels(Math.floor(traditionalMetrics.beeHotels * progress));
+      setAnimatedTraditionalWalking(Math.floor(traditionalMetrics.walkingWeeks * progress));
       setAnimatedTraditionalPlastic(Math.floor(traditionalMetrics.plasticBottles * progress));
-      setAnimatedTraditionalBike(Math.floor(traditionalMetrics.bikeKilometers * progress * 10) / 10);
-      setAnimatedTraditionalOcean(Math.floor(traditionalMetrics.oceanAbsorptionHours * progress));
 
       if (frame >= steps) {
         clearInterval(timer);
         // Set final values to ensure accuracy
         setAnimatedTraditionalTrees(traditionalMetrics.treesToPlant);
+        setAnimatedTraditionalBeeHotels(traditionalMetrics.beeHotels);
+        setAnimatedTraditionalWalking(traditionalMetrics.walkingWeeks);
         setAnimatedTraditionalPlastic(traditionalMetrics.plasticBottles);
-        setAnimatedTraditionalBike(traditionalMetrics.bikeKilometers);
-        setAnimatedTraditionalOcean(traditionalMetrics.oceanAbsorptionHours);
       }
     }, interval);
 
     return () => clearInterval(timer);
-  }, [traditionalMetrics?.treesToPlant, traditionalMetrics?.plasticBottles, traditionalMetrics?.bikeKilometers, traditionalMetrics?.oceanAbsorptionHours]);
+  }, [traditionalMetrics?.treesToPlant, traditionalMetrics?.beeHotels, traditionalMetrics?.walkingWeeks, traditionalMetrics?.plasticBottles]);
 
   const aiRecoveryCards = [
     {
       icon: Leaf,
       value: animatedTrees,
       label: 'Trees to Plant',
-      description: 'to absorb this CO2 in a year',
+      description: 'to clean the air for a year',
       color: 'from-emerald-500 to-green-600',
       bgColor: 'bg-emerald-500/10',
       iconColor: 'text-emerald-400'
     },
     {
-      icon: Droplet,
-      value: animatedOcean,
-      label: 'Ocean Hours',
-      description: 'for natural absorption',
-      color: 'from-cyan-500 to-blue-600',
-      bgColor: 'bg-cyan-500/10',
-      iconColor: 'text-cyan-400'
+      icon: Home,
+      value: animatedBeeHotels,
+      label: 'Bee Hotels to Build',
+      description: 'to help bees make flowers grow',
+      color: 'from-yellow-500 to-orange-600',
+      bgColor: 'bg-yellow-500/10',
+      iconColor: 'text-yellow-400'
     },
     {
-      icon: Bike,
-      value: animatedBike,
-      label: 'Bike Kilometers',
-      description: 'vs driving to offset',
-      color: 'from-orange-500 to-amber-600',
-      bgColor: 'bg-orange-500/10',
-      iconColor: 'text-orange-400'
+      icon: Footprints,
+      value: animatedWalking,
+      label: 'Weeks Walking to School',
+      description: 'instead of taking the car',
+      color: 'from-green-500 to-emerald-600',
+      bgColor: 'bg-green-500/10',
+      iconColor: 'text-green-400'
     },
     {
       icon: Recycle,
       value: animatedPlastic,
-      label: 'Plastic Bottles',
-      description: 'to recycle to offset',
+      label: 'Bottles to Recycle',
+      description: 'to help save the planet',
       color: 'from-blue-500 to-cyan-600',
       bgColor: 'bg-blue-500/10',
       iconColor: 'text-blue-400'
@@ -137,34 +137,34 @@ export const RecoveryMetrics: React.FC<ExtendedRecoveryMetricsProps> = ({
       icon: Leaf,
       value: animatedTraditionalTrees,
       label: 'Trees to Plant',
-      description: 'to absorb this CO2 in a year',
+      description: 'to clean the air for a year',
       color: 'from-emerald-500 to-green-600',
       bgColor: 'bg-emerald-500/10',
       iconColor: 'text-emerald-400'
     },
     {
-      icon: Droplet,
-      value: animatedTraditionalOcean,
-      label: 'Ocean Hours',
-      description: 'for natural absorption',
-      color: 'from-cyan-500 to-blue-600',
-      bgColor: 'bg-cyan-500/10',
-      iconColor: 'text-cyan-400'
+      icon: Home,
+      value: animatedTraditionalBeeHotels,
+      label: 'Bee Hotels to Build',
+      description: 'to help bees make flowers grow',
+      color: 'from-yellow-500 to-orange-600',
+      bgColor: 'bg-yellow-500/10',
+      iconColor: 'text-yellow-400'
     },
     {
-      icon: Bike,
-      value: animatedTraditionalBike,
-      label: 'Bike Kilometers',
-      description: 'vs driving to offset',
-      color: 'from-orange-500 to-amber-600',
-      bgColor: 'bg-orange-500/10',
-      iconColor: 'text-orange-400'
+      icon: Footprints,
+      value: animatedTraditionalWalking,
+      label: 'Weeks Walking to School',
+      description: 'instead of taking the car',
+      color: 'from-green-500 to-emerald-600',
+      bgColor: 'bg-green-500/10',
+      iconColor: 'text-green-400'
     },
     {
       icon: Recycle,
       value: animatedTraditionalPlastic,
-      label: 'Plastic Bottles',
-      description: 'to recycle to offset',
+      label: 'Bottles to Recycle',
+      description: 'to help save the planet',
       color: 'from-blue-500 to-cyan-600',
       bgColor: 'bg-blue-500/10',
       iconColor: 'text-blue-400'
