@@ -180,7 +180,7 @@ export async function estimateCO2Emissions(metadata: ImageMetadata): Promise<CO2
   
   try {
     // Get model from environment or use default
-    const model = import.meta.env.VITE_OPENAI_MODEL || 'gpt-3.5-turbo';
+    const model = import.meta.env.VITE_OPENAI_MODEL || 'gpt-4o-mini';
 
     // Prepare the API request (without response_format for compatibility)
     const request: Partial<OpenAIRequest> = {
@@ -188,7 +188,7 @@ export async function estimateCO2Emissions(metadata: ImageMetadata): Promise<CO2
       messages: [
         {
           role: 'system',
-          content: 'You are an environmental AI expert specializing in calculating CO2 emissions for AI-generated ad banners. You must respond ONLY with valid JSON, no other text.'
+          content: 'You are an advanced environmental AI expert using GPT-4o-mini capabilities to calculate CO2 emissions for AI-generated ad banners. Use your enhanced reasoning to provide accurate estimations. You must respond ONLY with valid JSON, no other text.'
         },
         {
           role: 'user',

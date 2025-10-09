@@ -118,7 +118,7 @@ ai-image-co2-calculator/
 - **Styling**: Tailwind CSS with custom animations
 - **Icons**: Lucide React
 - **Build Tool**: Vite
-- **API**: OpenAI GPT-4/GPT-3.5-turbo
+- **API**: OpenAI GPT-4o-mini/GPT-4o
 - **Testing**: Vitest, Testing Library
 
 ## 🌐 Environment Variables

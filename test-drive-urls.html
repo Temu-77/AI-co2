@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Drive Image Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .image-test { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 8px; }
+        img { max-width: 300px; height: auto; border-radius: 4px; }
+        .error { color: red; }
+        .success { color: green; }
+    </style>
+</head>
+<body>
+    <h1>Google Drive Image URL Test</h1>
+    
+    <div class="image-test">
+        <h3>AD 1</h3>
+        <img src="https://drive.google.com/uc?export=view&id=1CZlubRQQSupf5pTtpSBJA_ZwEAg3yFX4" alt="Ad 1" onload="this.nextElementSibling.innerHTML='✅ Loaded successfully'" onerror="this.nextElementSibling.innerHTML='❌ Failed to load'">
+        <p class="status">Loading...</p>
+    </div>
+    
+    <div class="image-test">
+        <h3>AD 2</h3>
+        <img src="https://drive.google.com/uc?export=view&id=1ora2WnI6OHJ0AF1yjz9CZUnoDwyXjFyd" alt="Ad 2" onload="this.nextElementSibling.innerHTML='✅ Loaded successfully'" onerror="this.nextElementSibling.innerHTML='❌ Failed to load'">
+        <p class="status">Loading...</p>
+    </div>
+    
+    <div class="image-test">
+        <h3>AD 3</h3>
+        <img src="https://drive.google.com/uc?export=view&id=1LxGzoAJ8okz9T8SCPHz_p9q9yGe69OJg" alt="Ad 3" onload="this.nextElementSibling.innerHTML='✅ Loaded successfully'" onerror="this.nextElementSibling.innerHTML='❌ Failed to load'">
+        <p class="status">Loading...</p>
+    </div>
+    
+    <div class="image-test">
+        <h3>AD 4</h3>
+        <img src="https://drive.google.com/uc?export=view&id=1LQxnOvgV0a5wpz0j0GhmMsSzf7z9eSBQ" alt="Ad 4" onload="this.nextElementSibling.innerHTML='✅ Loaded successfully'" onerror="this.nextElementSibling.innerHTML='❌ Failed to load'">
+        <p class="status">Loading...</p>
+    </div>
+    
+    <div class="image-test">
+        <h3>AD 5</h3>
+        <img src="https://drive.google.com/uc?export=view&id=1w1zxKt_A1OHvH9MmF-_as8nTDOl1zmlF" alt="Ad 5" onload="this.nextElementSibling.innerHTML='✅ Loaded successfully'" onerror="this.nextElementSibling.innerHTML='❌ Failed to load'">
+        <p class="status">Loading...</p>
+    </div>
+</body>
+</html>
